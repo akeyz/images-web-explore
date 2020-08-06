@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片查看器</title>
+    <link rel="stylesheet" href="./static/libs/normalize.css">
+    <link rel="stylesheet" href="./static/index.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="categories">
+            <div class="item" v-for="(item, index) in categories" :key="index" @click="clickCategory(item)" :class="{active: item == currentCategory}">
+                <span v-text="item"></span>
+            </div>
+            <div class="clr"></div>
+        </div>
+
+        <div class="files">
+            <template v-if="files.length">
+                <div class="item" v-for="(item, index) in files" :key="index" @click="clickFile(item)">
+                    <img :src="`/download/${currentCategory}/${item}`" :alt="item">
+                </div>
+                <div class="clr"></div>
+            </template>
+            <template v-else>
+                <div class="none">
+                    暂无数据
+                </div>
+            </template>
+        </div>
+    </div>
+    <script src="./static/libs/vue.min.js"></script>
+    <script src="./static/index.js"></script>
+</body>
+
+</html>
